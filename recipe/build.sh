@@ -8,7 +8,7 @@ if [[ "${target_platform}" == osx-* ]]; then
 fi
 
 if [[ "$(uname -a)" == *"Ubuntu"* ]]; then
-  git apply ubuntu-prevent-double-free.patch
+  git apply /home/conda/recipe_root/ubuntu-prevent-double-free.patch
 fi
 
 # Set the DISPENSO_BUILD_TESTS option based on the cross-compilation status.
