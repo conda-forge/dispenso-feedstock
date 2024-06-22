@@ -12,7 +12,7 @@ source:
       - disable-install-gtest.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -20,7 +20,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
     - cmake
-    - ninja
+    - ninja  # [not win]
 
 test:
   commands:
