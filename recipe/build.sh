@@ -7,6 +7,10 @@ if [[ "${target_platform}" == osx-* ]]; then
   CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
 
+if [[ "$(uname -a)" == *"Ubuntu"* ]]; then
+  git apply ubuntu-prevent-double-free.patch
+fi
+
 # Set the DISPENSO_BUILD_TESTS option based on the cross-compilation status.
 # Dispenso uses gtest_discover_tests(), which invokes running tests during building.
 # This can lead to segfaults when running osx-arm64 targets on osx during cross-compilation.
