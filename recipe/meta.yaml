@@ -10,6 +10,7 @@ source:
     sha256: 824afe8d0d36bfd9bc9b1cbe9be89e7f3ed642a3612766d1c99d5f8dfc647c63
     patches:
       - disable-install-gtest.patch
+      - ubuntu-prevent-double-free.patch  # [linux]
 
 build:
   number: 2
