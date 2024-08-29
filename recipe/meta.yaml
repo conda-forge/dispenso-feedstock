@@ -17,7 +17,7 @@ build:
   run_exports:
     - {{ pin_subpackage('dispenso', max_pin='x.x') }}
   ignore_run_exports:
-    - libstdcxx-ng
+    - libstdcxx-ng  # [linux]
 
 requirements:
   build:
@@ -27,11 +27,11 @@ requirements:
     - cmake
     - ninja  # [not win]
   host:
-    - libstdcxx-ng
-    - libgcc-ng
+    - libstdcxx-ng  # [linux]
+    - libgcc-ng     # [linux]
   run:
-    - libstdcxx-ng
-    - libgcc-ng
+    - libstdcxx-ng  # [linux]
+    - libgcc-ng     # [linux]
 
 test:
   commands:
