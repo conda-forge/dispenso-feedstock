@@ -16,8 +16,6 @@ build:
   number: 4
   run_exports:
     - {{ pin_subpackage('dispenso', max_pin='x.x') }}
-  ignore_run_exports:
-    - libstdcxx-ng  # [linux]
 
 requirements:
   build:
