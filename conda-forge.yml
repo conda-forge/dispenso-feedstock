@@ -12,3 +12,5 @@ conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
 test: native_and_emulated
+bot:
+  automerge: true
