@@ -33,4 +33,4 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
   ctest --test-dir build --output-on-failure -LE flaky
 fi
 
-cmake --build build --target install
+cmake --install build
