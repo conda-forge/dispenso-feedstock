@@ -5,6 +5,9 @@ set -euxo pipefail
 if [[ "${target_platform}" == osx-* ]]; then
   # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
   CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+  # Suppress C++20 extension warning for variadic macros in GoogleTest's TYPED_TEST_SUITE
+  # when compiling with C++14. The macro requires a third argument but tests omit it.
+  CXXFLAGS="${CXXFLAGS} -Wno-c++20-extensions"
 fi
 
 # Set the DISPENSO_BUILD_TESTS option based on the cross-compilation status.
