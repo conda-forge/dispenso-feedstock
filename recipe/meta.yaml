@@ -1,5 +1,5 @@
 {% set name = "Dispenso" %}
-{% set version = "1.4.1" %}
+{% set version = "1.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/facebookincubator/dispenso/archive/v{{ version }}.tar.gz
-    sha256: e31fecf0e5f434553373bb3fd1b4f4e8503e6ca902f9bed0d4f2d0bb7d2ff280
+    sha256: 1773991c164b723567fcdf922651f75e7d2611ab36efd87dd0cd3ef20b135e2f
 
 build:
   number: 0
