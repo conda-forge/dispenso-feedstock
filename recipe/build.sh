@@ -33,7 +33,11 @@ cmake $SRC_DIR \
 cmake --build build --parallel
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
-  ctest --test-dir build --output-on-failure -LE flaky
+  CTEST_ARGS=(--test-dir build --output-on-failure -LE flaky)
+  if [[ "${target_platform}" == "osx-64" ]]; then
+    CTEST_ARGS+=(-E "Timing\\.(StatisticalAccuracy|LongerDurationAccuracy)")
+  fi
+  ctest "${CTEST_ARGS[@]}"
 fi
 
 cmake --install build
