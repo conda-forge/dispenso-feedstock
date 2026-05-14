@@ -24,8 +24,16 @@ requirements:
 
 test:
   commands:
-    - test -f $PREFIX/lib/cmake/Dispenso-{{ version }}/DispensoConfig.cmake  # [not win]
-    - if not exist %PREFIX%\\Library\\lib\\cmake\\Dispenso-{{ version }}\\DispensoConfig.cmake exit 1  # [win]
+    - bash run_cmake_test.sh  # [unix]
+    - call run_cmake_test.bat  # [win]
+  requires:
+    - {{ compiler('cxx') }}
+    - cmake
+    - ninja
+  files:
+    - run_cmake_test.sh
+    - run_cmake_test.bat
+    - tests/
 
 about:
   home: https://github.com/facebookincubator/dispenso
