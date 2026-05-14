@@ -24,15 +24,15 @@ requirements:
 
 test:
   commands:
-    - bash run_test.sh  # [unix]
-    - call run_test.bat  # [win]
+    - bash run_cmake_test.sh  # [unix]
+    - call run_cmake_test.bat  # [win]
   requires:
     - {{ compiler('cxx') }}
     - cmake
     - ninja
   files:
-    - run_test.sh
-    - run_test.bat
+    - run_cmake_test.sh
+    - run_cmake_test.bat
     - tests/
 
 about:
