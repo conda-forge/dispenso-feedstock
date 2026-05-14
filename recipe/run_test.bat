@@ -1,8 +1,12 @@
 @echo on
 
-dir "%LIBRARY_PREFIX%\lib\cmake\Dispenso-*\DispensoConfig.cmake"
+set "FOUND_DISPENSO_CONFIG="
 
-if errorlevel 1 exit 1
+for /d %%D in ("%PREFIX%\Library\lib\cmake\Dispenso-*") do (
+  if exist "%%~D\DispensoConfig.cmake" set "FOUND_DISPENSO_CONFIG=1"
+)
+
+if not defined FOUND_DISPENSO_CONFIG exit /b 1
 
 cmake tests ^
   %CMAKE_ARGS% ^
@@ -10,10 +14,10 @@ cmake tests ^
   -B tests\build ^
   -DCMAKE_BUILD_TYPE=Release
 
-if errorlevel 1 exit 1
+if errorlevel 1 exit /b 1
 
 cmake --build tests\build --parallel
 
-if errorlevel 1 exit 1
+if errorlevel 1 exit /b 1
 
 tests\build\dispenso_consumer_test.exe
