@@ -1,0 +1,66 @@
+context:
+  name: dispenso
+  version: "1.5.1"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebookincubator/dispenso/archive/v${{ version }}.tar.gz
+  sha256: e75b2a1bd428b2e9558ea99c03d266d2bf8881ba41689016e8c98052e1a0c17d
+
+build:
+  number: 1
+  script:
+    - if: win
+      then: call "%RECIPE_DIR%\\build.bat"
+    - if: unix
+      then: bash "${RECIPE_DIR}/build.sh"
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - if: not win
+      then: ninja
+  run_exports:
+    - ${{ pin_subpackage('dispenso', upper_bound='x.x') }}
+
+tests:
+  - requirements:
+      run:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib('c') }}
+        - cmake
+        - ninja
+    files:
+      recipe:
+        - run_cmake_test.bat
+        - run_cmake_test.sh
+        - tests/
+    script:
+      - if: unix
+        then:
+          - bash run_cmake_test.sh
+      - if: win
+        then:
+          - call run_cmake_test.bat
+
+about:
+  homepage: https://github.com/facebookincubator/dispenso
+  repository: https://github.com/facebookincubator/dispenso
+  summary: The project provides high-performance concurrency, enabling highly parallel computation.
+  description: |
+    Dispenso is a library for working with sets of tasks in parallel. It provides mechanisms for
+    thread pools, task sets, parallel for loops, futures, pipelines, and more. Dispenso is a
+    well-tested C++14 library designed to have minimal dependencies (some dependencies are required
+    for the tests and benchmarks), and designed to be clean with compiler sanitizers (ASAN, TSAN).
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - jeongseok-meta
