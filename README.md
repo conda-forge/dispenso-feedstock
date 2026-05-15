@@ -16,7 +16,6 @@ thread pools, task sets, parallel for loops, futures, pipelines, and more. Dispe
 well-tested C++14 library designed to have minimal dependencies (some dependencies are required
 for the tests and benchmarks), and designed to be clean with compiler sanitizers (ASAN, TSAN).
 
-
 Current build status
 ====================
 
