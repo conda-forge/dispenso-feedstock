@@ -62,5 +62,6 @@ about:
   license_file: LICENSE
 
 extra:
+  feedstock-name: dispenso
   recipe-maintainers:
     - jeongseok-meta
